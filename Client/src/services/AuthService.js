@@ -49,6 +49,20 @@ export const GetCurrentUser = () => {
   }
 };
 
+export const AuthServiceForgotPassword = async (email) => {
+  const response = await axios
+    .post(`${AUTH_URL}/forgot-password`, { email: email })
+    .catch((error) => error.response);
+  return response;
+};
+
+export const AuthServiceResetPassword = async (email, password) => {
+  const response = await axios
+    .post(`${AUTH_URL}/reset-password`, { email: email, password: password })
+    .catch((error) => error.response);
+  return response;
+};
+
 export const Logout = () => {
   localStorage.removeItem(LOCAL_STORAGE_TOKEN);
   window.location.href = "/";

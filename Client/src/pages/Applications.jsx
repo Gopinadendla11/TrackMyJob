@@ -6,7 +6,7 @@ import {
   GetApplications,
   UpdateStatus,
 } from "../services/ApplicationService";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { Dropdown } from "../components/Dropdown";
 import Button from "../components/Button";
 import { Columns } from "./GridData";
@@ -42,8 +42,13 @@ export const Applications = () => {
 
   //function for search click button
   const onSearchClicked = () => {
-    if (searchQuery !== "") {
-      setData(data.filter((item) => item.companyName === searchQuery));
+    if (searchQuery === "") setDisplayData(data);
+    else {
+      setDisplayData(
+        data.filter((item) =>
+          item.companyName.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      );
     }
   };
 
@@ -136,6 +141,9 @@ export const Applications = () => {
                 setElement(e.target.value);
                 setSearchQuery(e.target.value);
               }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") onSearchClicked();
+              }}
             />
             <button
               className="lg:w-64  max-w-[250px]  p-3 rounded-md border-[2px] border-solid border-primary bg-primary text-white text-[0px] sm:text-lg"
@@ -176,6 +184,7 @@ export const Applications = () => {
               rows={displayData}
               columns={Columns}
               processRowUpdate={statusChanged}
+              slots={{ toolbar: GridToolbar }}
               experimentalFeatures={{ newEditingApi: true }}
               onProcessRowUpdateError={(err) => {
                 console.log(err);

@@ -57,7 +57,7 @@ const Login = () => {
               <p className="text-[16px] font-bold">Email</p>
               <input
                 placeholder="Enter Your Email"
-                className="w-full lg:w-2/3 p-3 my-3 rounded-md border-[2px] border-solid border-primary"
+                className="w-full lg:w-2/3 p-3 my-2 rounded-md border-[2px] border-solid border-primary"
                 type="email"
                 required
                 value={email}
@@ -66,7 +66,7 @@ const Login = () => {
             </div>
             <div className="mt-3">
               <p className="text-[16px] font-bold">Password</p>
-              <div className="w-full relative lg:w-2/3 my-3 ">
+              <div className="w-full relative lg:w-2/3 my-2 ">
                 <input
                   className="p-3 w-full rounded-md border-[2px] border-solid border-primary"
                   placeholder="Your Password"
@@ -86,19 +86,27 @@ const Login = () => {
                     onClick={() => setIsPasswordVisible(true)}
                   ></AiFillEye>
                 )}
+                <div className="flex mt-4 justify-end">
+                  <a
+                    className=" font-bold text-primary text-sm"
+                    href="/forgot-password"
+                  >
+                    Forgot Password?
+                  </a>
+                </div>
               </div>
             </div>
 
-            <p className="text-[16px] text-red-700">{errorMessage}</p>
+            <p className="text-[16px] text-red-700 mb-2">{errorMessage}</p>
 
             <input
-              className="px-6 py-2 my-5 rounded-xl border-solid border-2  bg-primary text-white"
+              className="px-6 py-2 rounded-xl border-solid border-2  bg-primary text-white"
               type="submit"
               value="Login"
               onClick={onLoginSubmit}
             ></input>
 
-            <div className="flex">
+            <div className="flex mt-4">
               <p>Don't Have an Account ? </p> &nbsp;
               <a className="font-bold text-primary" href="/signup">
                 Click Here to Signup

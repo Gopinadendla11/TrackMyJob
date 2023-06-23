@@ -1,8 +1,8 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 
-exports.generateAccessToken = (user) => {
-  return jwt.sign(user, process.env.JWT_SECRET_KEY, { expiresIn: "2h" });
+exports.generateAccessToken = (data, expireTime) => {
+  return jwt.sign(data, process.env.JWT_SECRET_KEY, { expiresIn: expireTime });
 };
 
 exports.verifyAccessToken = (token) => {

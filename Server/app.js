@@ -2,7 +2,6 @@ const express = require("express");
 require("dotenv").config();
 const cors = require("cors");
 const app = express();
-const hostname = "localhost";
 const authRoutes = require("./routes/authRoute");
 const applicationRoutes = require("./routes/applicationRoutes");
 const userRoutes = require("./routes/userRoutes");
@@ -12,11 +11,12 @@ app.use(express.json());
 
 app.use(express.json());
 app.use(express.text());
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+const corsOptions = {
+  origin: "*",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
 mongoose
   .connect(process.env.MONGO_URL, {

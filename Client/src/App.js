@@ -8,6 +8,8 @@ import RequireAuth from "./pages/RequireAuth";
 import NewApplication from "./pages/NewApplication";
 import { Applications } from "./pages/Applications";
 import { Profile } from "./pages/Profile";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 const App = () => {
   return (
@@ -25,6 +27,17 @@ const App = () => {
           ></Route>
           <Route path="/login" exact Component={Login}></Route>
           <Route path="/signup" exact Component={Signup}></Route>
+
+          <Route
+            path="/forgot-password"
+            exact
+            Component={ForgotPassword}
+          ></Route>
+          <Route
+            path="/reset-password/:token"
+            exact
+            Component={ResetPassword}
+          ></Route>
           <Route
             path="/new-application"
             exact
